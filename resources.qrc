@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/Gnome-gnomine.png</file>
+        <file>icons/Minesweeper_flag.svg</file>
+        <file>icons/Minesweeper_unopened_square.svg</file>
+    </qresource>
+</RCC>
