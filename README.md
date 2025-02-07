@@ -46,5 +46,5 @@ To build and run Minesweeper, follow these steps:
    qmake
    make
 4. **Run The Game**
-```sh
-./minesweep
+   ```sh
+   ./minesweep
