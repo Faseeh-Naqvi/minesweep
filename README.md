@@ -40,3 +40,11 @@ To build and run Minesweeper, follow these steps:
    ```sh
    git clone <repository-url>
    cd minesweeper
+2. **Clean and Build**
+   ```sh
+   make clean
+   qmake
+   make
+4. **Run The Game**
+```sh
+./minesweep
