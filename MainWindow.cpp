@@ -38,10 +38,10 @@ void MainWindow::setupBoard()
             button->setFixedSize(30, 30);
             gridLayout->addWidget(button, r, c);
             buttonGrid[r][c] = button;
-            // Save row and column numbers in the button
+            
             button->setProperty("row", r);
             button->setProperty("col", c);
-            // Let MainWindow handle the mouse clicks
+            // for mouse clicks, this is the only way that I could figure out for the right click
             button->installEventFilter(this);
         }
     }

@@ -7,8 +7,7 @@
 #include <QGridLayout>
 #include <QPushButton>
 
-class Board;  // Forward declaration
-
+class Board;  
 class MainWindow : public QMainWindow {
     Q_OBJECT
 
@@ -34,7 +33,7 @@ private:
     QIcon emptyIcon;
     QIcon questionIcon;
 
-    // Game board pointer
+    // Game board
     Board *gameBoard;
 
     // Setup and UI functions
