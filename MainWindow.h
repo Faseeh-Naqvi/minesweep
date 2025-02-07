@@ -27,7 +27,7 @@ private:
     void handleRightClick(QPushButton *button);
 
     // Members
-    QIcon flagIcon, mineIcon, emptyIcon;
+    QIcon flagIcon, mineIcon, emptyIcon, questionIcon;
     QWidget *centralWidget;
     QGridLayout *gridLayout;
     Board *gameBoard;

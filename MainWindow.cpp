@@ -16,6 +16,9 @@ MainWindow::MainWindow(QWidget *parent)
     flagIcon = QIcon(":/icons/Minesweeper_flag.svg");
     mineIcon = QIcon(":/icons/Gnome-gnomine.png");
     emptyIcon = QIcon(":/icons/Minesweeper_unopened_square.svg");
+    questionIcon = QIcon(":/icons/Minesweeper_questionmark.svg");
+
+
 
     // Setup central widget & layout
     centralWidget = new QWidget(this);
@@ -149,32 +152,51 @@ void MainWindow::resetGame()
 /**
  * Refresh all QPushButtons according to the underlying Board state
  */
-void MainWindow::updateUI()
-{
-    for (int r = 0; r < rows; ++r) {
-        for (int c = 0; c < cols; ++c) {
+void MainWindow::updateUI() {
+    for (int r = 0; r < rows; r++) {
+        for (int c = 0; c < cols; c++) {
             QPushButton *button = buttonGrid[r][c];
-            Cell cell = gameBoard->getGrid()[r][c];
+            const Cell &cell = gameBoard->getGrid()[r][c];
 
-            if (cell.isFlagged()) {
+            if (cell.hasFlag()) {
+                // Show flag
                 button->setIcon(flagIcon);
-            } else if (cell.isRevealed()) {
+                button->setText("");
+                button->setStyleSheet("");
+            } 
+            else if (cell.hasQuestion()) {
+                // Show question mark
+                button->setIcon(questionIcon);
+                button->setText("");
+                button->setStyleSheet("");
+            } 
+            else if (cell.isRevealed()) {
+                // Show revealed content
                 if (cell.isMine()) {
                     button->setIcon(mineIcon);
+                    button->setText("");
                     button->setStyleSheet("background-color: red;");
                 } else {
                     button->setIcon(emptyIcon);
-                    button->setText(QString::number(cell.getAdjacentMines()));
+                    // Only show a number if > 0 (so empty cells don’t display "0")
+                    if (cell.getAdjacentMines() > 0)
+                        button->setText(QString::number(cell.getAdjacentMines()));
+                    else
+                        button->setText("");
                     button->setStyleSheet("background-color: lightgray;");
                 }
-            } else {
-                // Hidden cell: no icon or text
+            } 
+            else {
+                // Hidden cell with no mark
                 button->setIcon(QIcon());
                 button->setText("");
+                button->setStyleSheet("");
             }
         }
     }
 }
+
+
 
 MainWindow::~MainWindow()
 {

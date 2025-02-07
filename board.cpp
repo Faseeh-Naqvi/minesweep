@@ -49,7 +49,7 @@ void Board::calculateAdjacentMines() {
 
 void Board::revealCell(int row, int col) {
     if (row < 0 || row >= rows || col < 0 || col >= cols) return;
-    if (grid[row][col].isRevealed() || grid[row][col].isFlagged()) return;
+    if (grid[row][col].isRevealed() || grid[row][col].hasFlag()) return;
 
     std::queue<std::pair<int, int>> toReveal;
     toReveal.push({row, col});
@@ -58,7 +58,7 @@ void Board::revealCell(int row, int col) {
         auto [r, c] = toReveal.front();
         toReveal.pop();
 
-        if (grid[r][c].isRevealed() || grid[r][c].isFlagged()) continue;
+        if (grid[r][c].isRevealed() || grid[r][c].hasFlag()) continue;
 
         grid[r][c].setRevealed(true);
 
@@ -79,9 +79,9 @@ void Board::revealCell(int row, int col) {
 void Board::toggleFlag(int row, int col) {
     if (row < 0 || row >= rows || col < 0 || col >= cols) return;
     if (!grid[row][col].isRevealed()) {
-        bool oldFlag = grid[row][col].isFlagged();//for debugging
-        grid[row][col].toggleFlag();
-        qDebug() << "Cell" << row << col << "flag changed from" << oldFlag << "to" << grid[row][col].isFlagged();
+        //bool oldFlag = grid[row][col].hasFlag();//for debugging
+        grid[row][col].cycleMark();
+        //qDebug() << "Cell" << row << col << "flag changed from" << oldFlag << "to" << grid[row][col].hasFlag();
     }
 }
 
