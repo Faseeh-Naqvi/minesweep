@@ -3,5 +3,9 @@
         <file>icons/Gnome-gnomine.png</file>
         <file>icons/Minesweeper_flag.svg</file>
         <file>icons/Minesweeper_unopened_square.svg</file>
+        <file>icons/MINESWEEPER_1_(Windows_9x).png</file>
+        <file>icons/MINESWEEPER_2_(Windows_9x).png</file>
+        <file>icons/MINESWEEPER_3_(Windows_9x).png</file>
+        <file>icons/Minesweeper_questionmark.svg</file>
     </qresource>
 </RCC>

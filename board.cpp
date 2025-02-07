@@ -4,6 +4,8 @@
 #include <ctime>
 #include <queue>
 
+#include <QDebug>
+
 Board::Board(int r = 16, int c = 30, int mines = 99) : rows(r), cols(c), numMines(mines) {
     grid.resize(rows, std::vector<Cell>(cols));
 
@@ -77,7 +79,9 @@ void Board::revealCell(int row, int col) {
 void Board::toggleFlag(int row, int col) {
     if (row < 0 || row >= rows || col < 0 || col >= cols) return;
     if (!grid[row][col].isRevealed()) {
+        bool oldFlag = grid[row][col].isFlagged();//for debugging
         grid[row][col].toggleFlag();
+        qDebug() << "Cell" << row << col << "flag changed from" << oldFlag << "to" << grid[row][col].isFlagged();
     }
 }
 

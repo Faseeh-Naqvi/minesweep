@@ -362,9 +362,13 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_resources.cpp
 qrc_resources.cpp: resources.qrc \
 		/usr/lib/qt5/bin/rcc \
+		icons/MINESWEEPER_2_(Windows_9x).png \
+		icons/MINESWEEPER_3_(Windows_9x).png \
 		icons/Minesweeper_unopened_square.svg \
+		icons/Minesweeper_questionmark.svg \
 		icons/Gnome-gnomine.png \
-		icons/Minesweeper_flag.svg
+		icons/Minesweeper_flag.svg \
+		icons/MINESWEEPER_1_(Windows_9x).png
 	/usr/lib/qt5/bin/rcc -name resources resources.qrc -o qrc_resources.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h
