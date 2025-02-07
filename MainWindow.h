@@ -2,9 +2,12 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QIcon>
+#include <vector>
 #include <QGridLayout>
 #include <QPushButton>
-#include "board.h"
+
+class Board;  // Forward declaration
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -13,26 +16,35 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-protected:
-    // Override eventFilter to catch right-click
-    bool eventFilter(QObject *obj, QEvent *event) override;
+
+protected: virtual bool eventFilter(QObject *obj, QEvent *event);
 
 private:
+    
+    static const int rows = 16;
+    static const int cols = 30;
+    static const int mines = 99;
+
+    // UI Elements
+    QWidget *centralWidget;
+    QGridLayout *gridLayout;
+    std::vector<std::vector<QPushButton*>> buttonGrid;
+    QIcon flagIcon;
+    QIcon mineIcon;
+    QIcon emptyIcon;
+    QIcon questionIcon;
+
+    // Game board pointer
+    Board *gameBoard;
+
+    // Setup and UI functions
     void setupBoard();
     void updateUI();
     void resetGame();
-    
-    // Handle left-click and right-click with pointer to the button clicked
+
+    // Mouse event handlers
     void handleCellClick(QPushButton *button);
     void handleRightClick(QPushButton *button);
-
-    // Members
-    QIcon flagIcon, mineIcon, emptyIcon, questionIcon;
-    QWidget *centralWidget;
-    QGridLayout *gridLayout;
-    Board *gameBoard;
-    std::vector<std::vector<QPushButton*>> buttonGrid;
-    int rows, cols, mines;
 };
 
-#endif // MAINWINDOW_H
+#endif

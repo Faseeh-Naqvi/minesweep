@@ -5,26 +5,26 @@ class Cell {
 public:
     Cell();
 
-    // Setters
+    // Set cell properties
     void setMine(bool value);
     void setRevealed(bool value);
     void setAdjacentMines(int count);
-    void cycleMark(); // cycles: 0 (no mark) -> 1 (flag) -> 2 (question) -> 0
+    void cycleMark(); // cycles: 0 -> 1 -> 2 -> 0
 
-    // Getters
+    // Get cell properties
     bool isMine() const;
     bool isRevealed() const;
-    int  getAdjacentMines() const;
+    int getAdjacentMines() const;
 
-    // Mark state checkers
-    bool hasFlag() const;      // returns true if markState == 1
-    bool hasQuestion() const;  // returns true if markState == 2
+    // Check mark state
+    bool hasFlag() const;     // true if markState == 1
+    bool hasQuestion() const; // true if markState == 2
 
 private:
-    bool mine;
-    bool revealed;
-    int markState;      // 0 = no mark, 1 = flag, 2 = question
-    int adjacentMines;
+    bool mine;        // true if the cell is a mine
+    bool revealed;    // true if the cell is revealed
+    int markState;    // 0: none, 1: flag, 2: question
+    int adjacentMines;// number of mines around the cell
 };
 
 #endif // CELL_H
